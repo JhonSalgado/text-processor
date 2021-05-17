@@ -8,12 +8,12 @@ import (
 // cleanText removes from text all special characters except white spaces and converts it to lowercase.
 func cleanText(text string) string {
 
-	// comvert to lowercase
+	// convert to lowercase
 	cleanedText := strings.ToLower(text)
 
 	// replace special characters with spaces
-	symbols := regexp.MustCompile(`[^\w]`)
-	cleanedText = symbols.ReplaceAllString(cleanedText, " ")
+	symbols := regexp.MustCompile(`[^\p{L}\s]`)
+	cleanedText = symbols.ReplaceAllString(cleanedText, "")
 
 	// remove leading, trailing and large spaces
 	spaces := regexp.MustCompile(`\s+`)

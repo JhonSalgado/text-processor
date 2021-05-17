@@ -54,6 +54,14 @@ func TestCleanTextSpecialCharacters(t *testing.T) {
 	}
 }
 
+func TestCleanTextUnicodeCharacters(t *testing.T) {
+	want := "yo nací en españa ты в россии"
+	got := cleanText("¡¡¡yo nací en españa!!! ты в россии")
+	if want != got {
+		t.Fatalf("Different strings.\n Want: '%s'\n Got: '%s'", want, got)
+	}
+}
+
 func TestCleanTextEmpty(t *testing.T) {
 	want := ""
 	got := cleanText("")

@@ -1,3 +1,3 @@
-module github.com/JhonSalgado/text-alphabet
+module github.com/JhonSalgado/text-processor
 
 go 1.16

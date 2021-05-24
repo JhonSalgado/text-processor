@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strings"
 )
 
 // empty is an empty struct that occupies zero bytes of storage.
@@ -94,6 +95,6 @@ func (processor textProcessor) storeStopwordsByLanguage(langs []string) error {
 // storeCustomStopwords stores the custom stopwords in the text processor.
 func (processor textProcessor) storeCustomStopwords(stopWords []string) {
 	for _, word := range stopWords {
-		processor.customStopwords[word] = empty{}
+		processor.customStopwords[strings.ToLower(word)] = empty{}
 	}
 }

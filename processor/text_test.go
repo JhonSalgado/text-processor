@@ -64,7 +64,7 @@ func compareMaps(want map[string]int, got map[string]int, t *testing.T) {
 // ====== Common methods =======
 func TestCleanTextLowercase(t *testing.T) {
 	want := "hello world"
-	got := processor.CleanText("hello world")
+	got := processor.cleanText("hello world")
 	if want != got {
 		t.Fatalf("Different strings.\n Want: '%s'\n Got: '%s'", want, got)
 	}
@@ -72,7 +72,7 @@ func TestCleanTextLowercase(t *testing.T) {
 
 func TestCleanTextUppercase(t *testing.T) {
 	want := "hello world"
-	got := processor.CleanText("HELLO World")
+	got := processor.cleanText("HELLO World")
 	if want != got {
 		t.Fatalf("Different strings.\n Want: '%s'\n Got: '%s'", want, got)
 	}
@@ -80,7 +80,7 @@ func TestCleanTextUppercase(t *testing.T) {
 
 func TestCleanTextSpecialCharacters(t *testing.T) {
 	want := "hello world"
-	got := processor.CleanText("  HEllo!?... [(World)]  \n,,, ")
+	got := processor.cleanText("  HEllo!?... [(World)]  \n,,, ")
 	if want != got {
 		t.Fatalf("Different strings.\n Want: '%s'\n Got: '%s'", want, got)
 	}
@@ -88,7 +88,7 @@ func TestCleanTextSpecialCharacters(t *testing.T) {
 
 func TestCleanTextUnicodeCharacters(t *testing.T) {
 	want := "yo nací en españa ты в россии"
-	got := processor.CleanText("¡¡¡yo nací en españa!!! ты в россии")
+	got := processor.cleanText("¡¡¡yo nací en españa!!! ты в россии")
 	if want != got {
 		t.Fatalf("Different strings.\n Want: '%s'\n Got: '%s'", want, got)
 	}
@@ -96,7 +96,7 @@ func TestCleanTextUnicodeCharacters(t *testing.T) {
 
 func TestCleanTextEmpty(t *testing.T) {
 	want := ""
-	got := processor.CleanText("")
+	got := processor.cleanText("")
 	if want != got {
 		t.Fatalf("Different strings.\n Want: '%s'\n Got: '%s'", want, got)
 	}

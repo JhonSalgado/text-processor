@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"regexp"
 	"strings"
 )
 
@@ -62,7 +63,9 @@ func main() {
 		w.WriteString(fmt.Sprintf("var %s = []string{\n", lang))
 		for fileScanner.Scan() {
 			line := fileScanner.Text()
-			w.WriteString(fmt.Sprintf("\t\"%s\",\n", line))
+			symbols := regexp.MustCompile(`[^\p{L}]`)
+			cleanedLine := symbols.ReplaceAllString(line, "")
+			w.WriteString(fmt.Sprintf("\t\"%s\",\n", cleanedLine))
 		}
 		fmt.Printf("%s written\n", f.Name())
 		w.WriteString("}\n")

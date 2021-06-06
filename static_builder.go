@@ -14,7 +14,7 @@ var (
 	destinationFolder = "./processor/stopwords/"
 )
 
-func mainw() {
+func main() {
 
 	// open origin folder
 	files, err := ioutil.ReadDir(originFolder)

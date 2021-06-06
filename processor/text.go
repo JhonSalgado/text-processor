@@ -6,8 +6,8 @@ import (
 	"strings"
 )
 
-// CleanText removes from text all special characters except white spaces and converts it to lowercase.
-func (processor textProcessor) CleanText(text string) string {
+// cleanText removes from text all special characters except white spaces and converts it to lowercase.
+func (processor textProcessor) cleanText(text string) string {
 
 	// convert to lowercase
 	cleanedText := strings.ToLower(text)
@@ -26,7 +26,7 @@ func (processor textProcessor) CleanText(text string) string {
 
 // getWords returns a slice with every word of a text, in lowercase. It could have repeated words.
 func (processor textProcessor) getWords(text string) []string {
-	cleannedText := processor.CleanText(text)
+	cleannedText := processor.cleanText(text)
 	if cleannedText == "" {
 		return nil
 	}
@@ -40,7 +40,7 @@ func (processor textProcessor) isStopword(word string) bool {
 	return ok
 }
 
-// isStopWord checks if a word is a custom stopword
+// isCustomStopword checks if a word is a custom stopword
 func (processor textProcessor) isCustomStopword(word string) bool {
 	_, ok := processor.customStopwords[word]
 	return ok

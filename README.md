@@ -7,6 +7,10 @@ The processor is not intended to be robust, that is, words that are spelled diff
 
 Before obtaining the words, a pre-processing is carried out to clean the text and remove all non-word characters.
 
+## Install
+With Go installed:
+`go get github.com/JhonSalgado/text-processor`
+
 ## Methods
 This package has just two methods to process a text:
 ### GetWordsSet
@@ -126,4 +130,4 @@ If you want to contribute by adding stopwords to the languages included in this 
 
 If you want to add stopwords for a new language, you must name the file as code.txt, where code is the ISO 639-1 code for the language, and add the file to the stopwords folder. Also don't forget to add the new supported language to the readme so other people know they can use it.
 
-To make the changes effective, you must execute the static\_builder.go file, with the following command: `go run static_builder.go`. This will make the stopwords available to the package, regardless of where it is being used, through go files, which are stored in processor/stopwords/ (this folder should not be edited manually), and then create a pull request to develop with the generated changes.
+To make the changes effective, you must execute the static\_builder.go file, with the following command: `go run static_builder.go`. This will make the stopwords available to the package, regardless of where it is being used, through Go files, which are stored in processor/stopwords/ (this folder should not be edited manually), and then create a pull request to develop with the generated changes.

@@ -99,17 +99,3 @@ func TestGetTextProcessorWithStopWordsFilterBadLang(t *testing.T) {
 		t.Fatalf("Expected error to be 'language code '%s' not supported', got nil", badCode)
 	}
 }
-
-func TestGetTextProcessorWithStopWordsFilterFileNotFound(t *testing.T) {
-	langCode := "zz"
-	langFiles[langCode] = "test.txt"
-	filter := Filter{
-		OnlyCustom:      false,
-		CustomStopwords: []string{},
-		Langs:           []string{langCode},
-	}
-	_, err := GetTextProcessorWithStopWordsFilter(filter)
-	if err == nil {
-		t.Fatalf("Expected error to be 'file not found', got nil")
-	}
-}

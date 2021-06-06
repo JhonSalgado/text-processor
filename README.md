@@ -55,10 +55,11 @@ Before creating a text processor you need to create a filter, with the Filter st
 filter := processor.Filter{
 	OnlyCustom:      false,
 	CustomStopwords: []string{"bye"},
-	Langs:           []string{},
+	Langs:           []string{"en"},
 }
 ```
 `OnlyCustom` is a bool to indicate if you want to filter just your custom stopwords. If it is false, the stopwords of the languages present in the `Langs` list that are included in this package will also be filtered. If `Langs` is empty and `OnlyCustom`  is false, all available languages will be considered.
+In `Langs` you only have to enter the ISO 639-1 codes of the languages, not their full name.
 `CustomStopWords` is a list of the words you want to filter in replacement or in addition to those included in this package
 
 After creating the filter you should use it as shown in the example below:
@@ -67,7 +68,7 @@ func main() {
 	filter := processor.Filter{
 		OnlyCustom:      false,
 		CustomStopwords: []string{"bye"},
-		Langs:           []string{},
+		Langs:           []string{"en"},
 	}
 	textProcessor, err := processor.GetTextProcessorWithStopWordsFilter(filter)
 	if err != nil {
@@ -82,13 +83,13 @@ Output:
 ```map[fine:1 super:1]```
 
 Explanation:
-The method returns only those words because in the filter we indicated that we wanted to filter the stopwords included in the package (onlyCustom is false), and we did not specify any language so it filtered using the stopwords of all the available languages including english, and precisely the words that did not appear are classified as stopwords in the english language.
+The method returns only those words because in the filter we indicated that we wanted to filter the english stopwords included in the package, and precisely the words that did not appear are classified as stopwords in the english language, we also filtered 'bye' because it was present in the custom stopwords.
 
 ## Available languages:
 
 You can check the list of available languages and the list of stopwords for each one in its source repository https://github.com/Alir3z4/stop-words
 
-Here is the list of codes accepted by the filter and their respective language:
+Here is the list of ISO 639-1 codes accepted by the filter and their respective language:
 
 * **ar**: arabic
 * **bg**: bulgarian

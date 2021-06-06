@@ -1,10 +1,10 @@
 package processor
 
 import (
-	"bufio"
 	"fmt"
-	"os"
 	"strings"
+
+	"github.com/JhonSalgado/text-processor/processor/stopwords"
 )
 
 // empty is an empty struct that occupies zero bytes of storage.
@@ -55,17 +55,11 @@ func GetTextProcessorWithStopWordsFilter(filter Filter) (textProcessor, error) {
 	return processor, nil
 }
 
-// loadStopWordsFromFile loads the stopwords from a single language file.
-func (processor textProcessor) loadStopWordsFromFile(lang string, langFile string) error {
-	file, err := os.Open(basePath + langFile)
-	if err != nil {
-		return err
+// loadStopWordsFromLang loads the stopwords from a single language file.
+func (processor textProcessor) loadStopWordsFromLang(lang string, words []string) {
+	for _, word := range words {
+		processor.stopwords[word] = empty{}
 	}
-	fileScanner := bufio.NewScanner(file)
-	for fileScanner.Scan() {
-		processor.stopwords[fileScanner.Text()] = empty{}
-	}
-	return nil
 }
 
 // storeStopwordsByLanguage stores in the text processor stopwords for each specified language.
@@ -74,19 +68,16 @@ func (processor textProcessor) storeStopwordsByLanguage(langs []string) error {
 	var err error = nil
 	if len(langs) > 0 {
 		for _, lang := range langs {
-			langFile, ok := langFiles[lang]
+			words, ok := stopwords.Stopwords[lang]
 			if !ok {
 				err = fmt.Errorf("language code '%s' not supported", lang)
 				break
 			}
-			err = processor.loadStopWordsFromFile(lang, langFile)
-			if err != nil {
-				break
-			}
+			processor.loadStopWordsFromLang(lang, words)
 		}
 	} else {
-		for lang, langFile := range langFiles {
-			processor.loadStopWordsFromFile(lang, langFile)
+		for lang, words := range stopwords.Stopwords {
+			processor.loadStopWordsFromLang(lang, words)
 		}
 	}
 	return err

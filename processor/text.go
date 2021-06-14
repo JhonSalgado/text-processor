@@ -2,7 +2,6 @@ package processor
 
 import (
 	"regexp"
-	"sort"
 	"strings"
 )
 
@@ -60,7 +59,6 @@ func (processor textProcessor) GetWordsSet(text string) []string {
 	for word := range setOcurr {
 		set = append(set, word)
 	}
-	sort.Strings(set)
 	return set
 }
 

@@ -1,6 +1,7 @@
 package processor
 
 import (
+	"sort"
 	"testing"
 )
 
@@ -125,12 +126,14 @@ func TestGetWordsEmptyText(t *testing.T) {
 func TestGetWordsSetSpecialCharacters(t *testing.T) {
 	want := []string{"a", "hello", "is", "test", "this", "world"}
 	got := processor.GetWordsSet("Hello, World!! (this/ is @a test.]?")
+	sort.Strings(got)
 	compareSlices(want, got, t)
 }
 
 func TestGetWordsSetWordsRepeated(t *testing.T) {
 	want := []string{"hello", "world", "worlds"}
 	got := processor.GetWordsSet("Hello hello world worlds")
+	sort.Strings(got)
 	compareSlices(want, got, t)
 }
 
@@ -164,6 +167,7 @@ func TestGetWordsSetWithOcurrenceEmptyText(t *testing.T) {
 func TestGetWordsCustomStopwordsFilter(t *testing.T) {
 	want := []string{"a", "is", "test", "this", "world"}
 	got := processorCustomStopwords.GetWordsSet("Hello, World!! (this/ is @a test.]? bye")
+	sort.Strings(got)
 	compareSlices(want, got, t)
 }
 
@@ -191,6 +195,7 @@ func TestGetWordsSetWithOcurrenceCustomStopwordsFilterJustStopwords(t *testing.T
 func TestGetWordsBasicStopwordsFilter(t *testing.T) {
 	want := []string{"earthquake"}
 	got := processorBasicStopwords.GetWordsSet("Hello!! (this/ is @an earthquake.]?")
+	sort.Strings(got)
 	compareSlices(want, got, t)
 }
 
@@ -218,6 +223,7 @@ func TestGetWordsSetWithOcurrenceBasicStopwordsFilterJustStopwords(t *testing.T)
 func TestGetWordsAllStopwordsFilter(t *testing.T) {
 	want := []string{"earthquake", "terremoto"}
 	got := processorAllStopwords.GetWordsSet("Hello!! (this/ is @an earthquake o un terremoto.]?")
+	sort.Strings(got)
 	compareSlices(want, got, t)
 }
 

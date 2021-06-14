@@ -14,11 +14,11 @@ With Go installed:
 ## Methods
 This package has just two methods to process a text:
 ### GetWordsSet
-Receives a text string and returns a slice with all the unique words in it sorted alphabetically. The complexity of this method is O(n log n), because of the sorting, with n being the number of words in the text.
+Receives a text string and returns a slice with all the unique words in it sorted alphabetically. The complexity of this method is O(n), with n being the number of words in the text.
 ### GetWordsSetWithOcurrence
 Receives a text string and returns a value-key map where the keys are the words and the values are the number of times they occurred in the text. The complexity of this method is O(n), where n is the number of words in the text.
 
-Complexity is maintained even when using filters, because stopwords are stored in haspmaps, so checking if a word is a stopword takes constant time O(1). If this is done for n words, the total time is just O(n).
+Complexity is maintained even when using filters, because stopwords are stored in hashmaps, so checking if a word is a stopword takes constant time O(1). If this is done for n words, the total time is just O(n).
 
 ## Usage
 In order to use the methods mentioned above you need to create a text processor.

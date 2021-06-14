@@ -78,7 +78,7 @@ var hu = []string{
 	"hogyan",
 	"igen",
 	"ill",
-	"ill.",
+	"ill",
 	"illetve",
 	"ilyen",
 	"ilyenkor",

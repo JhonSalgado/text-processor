@@ -55,8 +55,8 @@ func TestGetTextProcessorWithStopWordsFilterBasicStopWords(t *testing.T) {
 	if proc.onlyCustom != false {
 		t.Fatalf("Expected processor only custom to be: %t\n Got: %t", false, proc.onlyCustom)
 	}
-	if len(proc.stopwords) != 162 {
-		t.Fatalf("Expected stopwords to be: %d\n Got: %d", 162, len(proc.stopwords))
+	if len(proc.stopwords) < 160 {
+		t.Fatalf("Expected stopwords to be more than: %d\n Got: %d", 160, len(proc.stopwords))
 	}
 	if len(proc.customStopwords) > 0 {
 		t.Fatalf("Expected custom stopwords to be: %d\n Got: %d", 0, len(proc.customStopwords))
@@ -79,8 +79,8 @@ func TestGetTextProcessorWithStopWordsFilterAllBasicStopwords(t *testing.T) {
 	if proc.onlyCustom != false {
 		t.Fatalf("Expected processor only custom to be: %t\n Got: %t", false, proc.onlyCustom)
 	}
-	if len(proc.stopwords) < 9000 {
-		t.Fatalf("Expected stopwords to be more than: %d\n Got: %d", 9000, len(proc.stopwords))
+	if len(proc.stopwords) < 8500 {
+		t.Fatalf("Expected stopwords to be more than: %d\n Got: %d", 8500, len(proc.stopwords))
 	}
 	if len(proc.customStopwords) > 0 {
 		t.Fatalf("Expected custom stopwords to be: %d\n Got: %d", 0, len(proc.customStopwords))

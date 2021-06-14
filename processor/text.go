@@ -45,7 +45,7 @@ func (processor textProcessor) isCustomStopword(word string) bool {
 	return ok
 }
 
-// GetWordsSet returns a sorted slice of strings containing every different word of a text, in lowercase.
+// GetWordsSet returns a slice of strings containing every different word of a text, in lowercase.
 func (processor textProcessor) GetWordsSet(text string) []string {
 	words := processor.getWords(text)
 	if words == nil {

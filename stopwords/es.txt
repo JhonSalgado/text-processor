@@ -138,8 +138,6 @@ estabas
 estad
 estada
 estadas
-estado
-estados
 estais
 estamos
 estan

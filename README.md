@@ -1,5 +1,5 @@
-# [WIP] text-processor
-This package helps you to obtain the set of unique words present in a text and includes the possibility to filter stopwords from various languages, obtained from https://github.com/Alir3z4/stop-words. It also allows you to add your own words to filter.
+# text-processor
+This golang package helps you to obtain the set of unique words present in a text and includes the possibility to filter stopwords from various languages, obtained from [Alir3z4/stop-words](https://github.com/Alir3z4/stop-words). It also allows you to add your own words to filter.
 
 It is similar to tokenize if you take the words as your tokens, but because it is focused on working with many languages it does not have advanced techniques such as Tagging Part of Speech (PoS).
 
@@ -87,7 +87,7 @@ Output:
 ```map[fine:1 super:1]```
 
 Explanation:
-The method returns only those words because in the filter we indicated that we wanted to filter the english stopwords included in the package, and precisely the words that did not appear are classified as stopwords in the english language, we also filtered 'bye' because it was present in the custom stopwords.
+The method returns only those words because in the filter we indicated that we wanted to filter the english stopwords included in the package, and precisely the words that did not appear are classified as stopwords in the english language. We also filtered 'bye' because it was present in the custom stopwords.
 
 ## Available languages:
 
@@ -131,3 +131,9 @@ If you want to contribute by adding stopwords to the languages included in this 
 If you want to add stopwords for a new language, you must name the file as code.txt, where code is the ISO 639-1 code for the language, and add the file to the stopwords folder. Also don't forget to add the new supported language to the readme so other people know they can use it.
 
 To make the changes effective, you must execute the static\_builder.go file, with the following command: `go run static_builder.go`. This will make the stopwords available to the package, regardless of where it is being used, through Go files, which are stored in processor/stopwords/ (this folder should not be edited manually), and then create a pull request to develop with the generated changes.
+
+## Sources:
+- [Alir3z4/stop-words](https://github.com/Alir3z4/stop-words) - [Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/). The name of the txt files has been modified, replacing the name of the language with its ISO 639-1 code.
+
+## License and Copyright
+Copyright (c) 2021 Jhon Salgado, contributors. Released under the MIT license.
